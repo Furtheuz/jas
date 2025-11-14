@@ -303,7 +303,7 @@
         <img id="jumpscareImg" src="jas.png" alt="Jumpscare">
     </div>
 
-    <audio id="music" src="sound.mp3" loop></audio>
+    <audio id="music" src="sound.mp3" loop muted></audio>
 
     <script>
         const scene1 = document.getElementById('scene1');
@@ -355,6 +355,9 @@
 
         // Next button - Scene 2 to Scene 3 (Jumpscare) with Fullscreen
         nextBtn.addEventListener('click', async () => {
+            // Play music when entering jumpscare
+            music.play();
+            
             // Request fullscreen
             try {
                 if (document.documentElement.requestFullscreen) {
