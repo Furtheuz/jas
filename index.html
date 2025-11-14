@@ -1,57 +1,202 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>COMP2521 Lecture 1</title>
-    <meta name="description" content="">
-    <meta property="og:title" content="COMP2521 Lecture 1" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mattlau1.github.io/jas/" />
-    <meta property="og:image" content="https://mattlau1.github.io/jas/jas.png" />
-    <meta property="og:description" content="COMP2521 - Data Structures and Algorithms Lecture 1" />
-    <meta name="theme-color" content="#000000">
-    <meta name="twitter:card" content="summary_large_image">
+    <title>Happy Birthday Ratna! 🎉</title>
+    <meta name="description" content="Ucapan Ulang Tahun Spesial untuk Ratna">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="main.css">
-    <link rel="icon" type="image/png" href="/jas.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        #black {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        #black.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #enter {
+            padding: 20px 40px;
+            font-size: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #enter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        #enter:active {
+            transform: translateY(-2px);
+        }
+
+        #jas {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 80%;
+            max-height: 80vh;
+            z-index: 10;
+            display: none;
+        }
+
+        #jas.show {
+            display: block;
+        }
+
+        .birthday-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 5;
+            animation: fadeIn 2s ease;
+        }
+
+        .birthday-text h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: bounce 2s infinite;
+        }
+
+        .birthday-text p {
+            font-size: 1.5rem;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div id="black"><button id="enter">Click to Enter Site</button></div>
-    <img id="jas" src="jas.png">
+    <div id="black">
+        <button id="enter">🎂 Klik untuk Membuka Kejutan! 🎁</button>
+    </div>
+    
+    <div class="birthday-text">
+        <h1>🎉 SELAMAT ULANG TAHUN RATNA! 🎉</h1>
+        <p>Semoga panjang umur, sehat selalu, dan bahagia! 🎂✨</p>
+    </div>
 
+    <img id="jas" src="jas.png">
     <audio id="music" src="sound.mp3" autoplay loop muted></audio>
-    <script async defer>
+
+    <script>
         const black = document.getElementById('black');
         const player = document.getElementById('music');
+        const img = document.getElementById('jas');
+        let timer;
 
         const swap = async () => {
-            const img = document.getElementById('jas');
             img.src = 'jas.png'
             await new Promise(r => setTimeout(r, 100));
             img.src = 'jas2.png'
             timer = setTimeout(swap, 200);
         }
 
+        const createConfetti = () => {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        const jumpscareSequence = async () => {
+            await new Promise(r => setTimeout(r, 3000));
+            img.classList.add('show');
+            timer = setTimeout(swap, 200);
+            await new Promise(r => setTimeout(r, 2000));
+            img.classList.remove('show');
+            clearTimeout(timer);
+        }
+
         const buttonEvent = () => {
             const btn = document.getElementById('enter');
             btn.addEventListener("click", () => {
-                const black = document.getElementById('black');
-                const player = document.getElementById('music');
-                black.style.visibility = 'hidden'
+                black.classList.add('hidden');
                 player.muted = false;
                 player.play();
+                createConfetti();
+                setInterval(createConfetti, 5000);
+                jumpscareSequence();
             })
-
         }
-        buttonEvent()
 
-
-        let timer = setTimeout(swap, 200);
+        buttonEvent();
     </script>
 </body>
-
 </html>
