@@ -7,7 +7,7 @@
     <meta name="description" content="Ucapan Ulang Tahun Spesial untuk Ratna">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap');
 
         * {
             margin: 0;
@@ -18,162 +18,141 @@
         body {
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
-            background: #000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
         }
 
-        /* Scene 1 - Welcome Screen */
-        #scene1 {
+        /* Birthday Message Screen */
+        .birthday-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
-            transition: opacity 0.8s ease;
-        }
-
-        #scene1.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .welcome-box {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 60px 80px;
-            border-radius: 30px;
+            z-index: 5;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: fadeInScale 1s ease;
+            padding: 20px;
         }
 
-        .welcome-box h1 {
-            font-size: 3rem;
-            color: white;
+        .cake-emoji {
+            font-size: 6rem;
+            animation: bounceIn 1s ease, float 3s ease-in-out infinite 1s;
             margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .welcome-box p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        #enterBtn {
-            padding: 18px 50px;
-            font-size: 1.3rem;
-            background: white;
-            color: #764ba2;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        #enterBtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            background: #f8f8f8;
-        }
-
-        /* Scene 2 - Birthday Message */
-        #scene2 {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 900;
-        }
-
-        #scene2.active {
-            display: flex;
-        }
-
-        .birthday-container {
-            text-align: center;
-            position: relative;
-            z-index: 10;
         }
 
         .birthday-container h1 {
-            font-size: 5rem;
-            color: white;
-            font-weight: 700;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: bounceIn 1.5s ease;
+            font-family: 'Pacifico', cursive;
+            font-size: 4.5rem;
+            color: #fff;
+            text-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .birthday-container .name {
+            font-size: 5.5rem;
+            color: #FFD700;
+            text-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            animation: scaleIn 1.2s ease;
             margin-bottom: 30px;
+            font-weight: 700;
         }
 
-        .birthday-container .subtitle {
-            font-size: 2rem;
-            color: white;
-            font-weight: 300;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
+        .birthday-container p {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             animation: fadeIn 2s ease;
+            margin-bottom: 50px;
+            font-weight: 300;
+            line-height: 1.6;
         }
 
-        .emoji-large {
-            font-size: 4rem;
-            animation: rotate 2s linear infinite;
-            display: inline-block;
+        /* Balloon Button */
+        .balloon-container {
+            position: relative;
+            animation: fadeIn 2.5s ease;
         }
 
-        #nextBtn {
-            padding: 18px 50px;
-            font-size: 1.3rem;
-            background: white;
-            color: #f5576c;
+        #balloonBtn {
+            width: 150px;
+            height: 180px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
             border: none;
-            border-radius: 50px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             cursor: pointer;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        #nextBtn:hover {
-            transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: floatBalloon 3s ease-in-out infinite;
+            font-size: 2rem;
         }
 
-        /* Scene 3 - Jumpscare */
-        #scene3 {
+        #balloonBtn:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        #balloonBtn:active {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        #balloonBtn::before {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        #balloonBtn::after {
+            content: '🎈';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+        }
+
+        .balloon-text {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            white-space: nowrap;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Jumpscare Screen */
+        #jumpscareScreen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: #000;
+            z-index: 2000;
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 2000;
         }
 
-        #scene3.active {
+        #jumpscareScreen.active {
             display: flex;
         }
 
-        #jumpscareImg {
+        #jas {
             width: 100vw;
             height: 100vh;
             object-fit: cover;
@@ -184,43 +163,29 @@
             position: fixed;
             width: 12px;
             height: 12px;
-            z-index: 50;
+            z-index: 10;
             animation: fall linear forwards;
         }
 
         /* Animations */
-        @keyframes fadeInScale {
-            from {
+        @keyframes bounceIn {
+            0% {
                 opacity: 0;
-                transform: scale(0.8);
+                transform: scale(0.3);
             }
-            to {
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
                 opacity: 1;
                 transform: scale(1);
             }
         }
 
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) translateY(-50px);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            70% {
-                transform: scale(0.9);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
+        @keyframes slideInDown {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(-50px);
             }
             to {
                 opacity: 1;
@@ -228,21 +193,44 @@
             }
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
             }
-            50% {
-                transform: scale(1.05);
+            70% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
             }
         }
 
-        @keyframes rotate {
+        @keyframes fadeIn {
             from {
-                transform: rotate(0deg);
+                opacity: 0;
             }
             to {
-                transform: rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes floatBalloon {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
             }
         }
 
@@ -255,70 +243,62 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .welcome-box {
-                padding: 40px 30px;
-            }
-            .welcome-box h1 {
-                font-size: 2rem;
-            }
-            .welcome-box p {
-                font-size: 1rem;
+            .cake-emoji {
+                font-size: 4rem;
             }
             .birthday-container h1 {
+                font-size: 2.5rem;
+            }
+            .birthday-container .name {
+                font-size: 3.5rem;
+            }
+            .birthday-container p {
+                font-size: 1.2rem;
+            }
+            #balloonBtn {
+                width: 120px;
+                height: 150px;
+            }
+            #balloonBtn::after {
                 font-size: 3rem;
-            }
-            .birthday-container .subtitle {
-                font-size: 1.3rem;
-            }
-            #enterBtn, #nextBtn {
-                padding: 15px 35px;
-                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Scene 1: Welcome -->
-    <div id="scene1">
-        <div class="welcome-box">
-            <h1>🎁 Ada Kejutan Spesial! 🎁</h1>
-            <p>Untuk seseorang yang istimewa...</p>
-            <button id="enterBtn">Buka Kejutan</button>
+    <!-- Birthday Message -->
+    <div class="birthday-container">
+        <div class="cake-emoji">🎂</div>
+        <h1>Selamat Ulang Tahun</h1>
+        <div class="name">RATNA!</div>
+        <p>
+            Semoga panjang umur, sehat selalu,<br>
+            penuh kebahagiaan dan kesuksesan! ✨
+        </p>
+        <div class="balloon-container">
+            <button id="balloonBtn"></button>
+            <div class="balloon-text">Pecahkan Balonnya! 🎉</div>
         </div>
     </div>
 
-    <!-- Scene 2: Birthday Message -->
-    <div id="scene2">
-        <div class="birthday-container">
-            <div class="emoji-large">🎂</div>
-            <h1>SELAMAT ULANG TAHUN</h1>
-            <h1 style="color: #FFD700;">RATNA!</h1>
-            <p class="subtitle">Semoga panjang umur, sehat selalu,<br>dan penuh kebahagiaan! ✨</p>
-            <button id="nextBtn">Lihat Kejutan Berikutnya 🎉</button>
-        </div>
-    </div>
-
-    <!-- Scene 3: Jumpscare -->
-    <div id="scene3">
-        <img id="jumpscareImg" src="jas.png" alt="Jumpscare">
+    <!-- Jumpscare Screen -->
+    <div id="jumpscareScreen">
+        <img id="jas" src="jas.png" alt="Surprise">
     </div>
 
     <audio id="music" src="sound.mp3" loop muted></audio>
 
     <script>
-        const scene1 = document.getElementById('scene1');
-        const scene2 = document.getElementById('scene2');
-        const scene3 = document.getElementById('scene3');
-        const enterBtn = document.getElementById('enterBtn');
-        const nextBtn = document.getElementById('nextBtn');
+        const balloonBtn = document.getElementById('balloonBtn');
+        const jumpscareScreen = document.getElementById('jumpscareScreen');
         const music = document.getElementById('music');
-        const jumpscareImg = document.getElementById('jumpscareImg');
+        const img = document.getElementById('jas');
         let swapTimer;
 
         // Create confetti
         function createConfetti() {
-            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500'];
-            for (let i = 0; i < 80; i++) {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#FFD700'];
+            for (let i = 0; i < 100; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
@@ -326,38 +306,35 @@
                     confetti.style.top = '-20px';
                     confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
                     confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDelay = Math.random() * 0.3 + 's';
                     confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.width = (Math.random() * 8 + 8) + 'px';
+                    confetti.style.height = (Math.random() * 8 + 8) + 'px';
                     document.body.appendChild(confetti);
                     
                     setTimeout(() => confetti.remove(), 5000);
-                }, i * 30);
+                }, i * 20);
             }
         }
 
+        // Start confetti on page load
+        createConfetti();
+        setInterval(createConfetti, 4000);
+
         // Jumpscare swap images
         async function swapImages() {
-            jumpscareImg.src = 'jas.png';
+            img.src = 'jas.png';
             await new Promise(r => setTimeout(r, 100));
-            jumpscareImg.src = 'jas2.png';
+            img.src = 'jas2.png';
             swapTimer = setTimeout(swapImages, 200);
         }
 
-        // Enter button - Scene 1 to Scene 2
-        enterBtn.addEventListener('click', () => {
-            scene1.classList.add('hidden');
-            setTimeout(() => {
-                scene2.classList.add('active');
-                createConfetti();
-                setInterval(createConfetti, 4000);
-            }, 800);
-        });
-
-        // Next button - Scene 2 to Scene 3 (Jumpscare) with Fullscreen
-        nextBtn.addEventListener('click', async () => {
-            // Play music when entering jumpscare
+        // Balloon click - trigger jumpscare with fullscreen
+        balloonBtn.addEventListener('click', async () => {
+            // Unmute and play music
+            music.muted = false;
             music.play();
-            
+
             // Request fullscreen
             try {
                 if (document.documentElement.requestFullscreen) {
@@ -371,9 +348,8 @@
                 console.log('Fullscreen request failed:', err);
             }
 
-            // Show jumpscare scene
-            scene2.classList.remove('active');
-            scene3.classList.add('active');
+            // Show jumpscare
+            jumpscareScreen.classList.add('active');
             swapImages();
         });
     </script>
